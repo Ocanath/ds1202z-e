@@ -16,6 +16,8 @@ def main():
     parser.add_argument('ip_address', help='IP address of the oscilloscope')
     parser.add_argument('--prefix', '-p', default='ds1202_data',
                         help='Prefix for output filename (default: ds1202_data)')
+    parser.add_argument('--output', '-o',
+                        help='Output filename (overrides --prefix)')
     parser.add_argument('--channel', '-c', type=int, choices=[1, 2],
                         help='Oscilloscope channel to read (1 or 2). If not specified, tries both channels.')
 
@@ -51,7 +53,10 @@ def main():
                 print("Error: No channels could be read. Make sure at least one channel is enabled.", file=sys.stderr)
                 sys.exit(1)
 
-        filename = generate_unique_filename(args.prefix)
+        if args.output:
+            filename = args.output if args.output.endswith('.npz') else f"{args.output}.npz"
+        else:
+            filename = generate_unique_filename(args.prefix)
         print(f"Saving data to {filename}...")
 
         # Prepare data dictionary for saving
