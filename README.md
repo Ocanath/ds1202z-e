@@ -10,6 +10,11 @@ This codebase uses numpy and pyvisa to implement some general purpose TCP data o
 - Python 3.6 or higher
 - VISA drivers (NI-VISA or equivalent) for instrument communication
 
+For optional post-analysis software:
+- matplotlib
+- scipy
+
+
 ### Install Dependencies
 ```bash
 pip install -r requirements.txt
@@ -22,19 +27,19 @@ pip install pyvisa numpy matplotlib scipy
 
 ## Usage
 
-### Data Acquisition with ds1202_wrapper.py
+### Data Acquisition with read_ds1202.py
 
 Wrapper script for capturing oscilloscope data with automatic channel detection and file saving.
 
 ```bash
 # Capture data from all available channels
-python ds1202_wrapper.py 192.168.1.100
+python read_ds1202.py 192.168.1.100
 
 # Capture data from specific channel with custom filename prefix
-python ds1202_wrapper.py 192.168.1.100 --channel 1 --prefix my_measurement
+python read_ds1202.py 192.168.1.100 --channel 1 --prefix my_measurement
 
 # Try both channels with custom prefix
-python ds1202_wrapper.py 192.168.1.100 --prefix experiment_1
+python read_ds1202.py 192.168.1.100 --prefix experiment_1
 ```
 
 **Arguments:**
