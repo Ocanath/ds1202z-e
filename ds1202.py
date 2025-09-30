@@ -292,7 +292,9 @@ def ds_1202_read_binary(scope, chan):
         'xincrement': xincrement,
         'yorigin' : yorigin,
         'yreference' : yreference,
-        'yincrement' : yincrement
+        'yincrement' : yincrement,
+        'sample_rate' : sample_rate,
+        'timebase' : timebase
     }
 
     return save_data
