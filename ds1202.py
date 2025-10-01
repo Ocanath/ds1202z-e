@@ -123,11 +123,16 @@ def ds_1202_read_full(scope, chan):
     if(stat.strip() != "STOP"):
         raise RuntimeError("Scope must be stopped before reading data")
 
+    rply = scope.query(f":CHANnel{chan}:DISPlay?")
+    # print(f"Channel {chan} enabled status: {rply.strip()}")
+    if(rply.strip() != "1"):
+        raise RuntimeError(f"Requested channel is disabled! Valid data cannot be acquired")
+
     #Set desired source channel and verify it is selected properly
     scope.write(":WAVeform:SOURce CHANnel"+str(chan))
     rply = scope.query(":WAVeform:SOURce?")
     if(rply.strip() != "CHAN"+str(chan)):
-        raise RuntimeError(f"Source request failed with response {rply.strip()}. Turn channel {chan} on!")
+        raise RuntimeError(f"Source request failed with response {rply.strip()}. Failed to obatin channel {chan} as source!")
 
     #Set waveform formatting (ascii + raw)
     scope.write(":WAVeform:FORMat BYTE")    #force ASC
