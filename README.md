@@ -20,11 +20,6 @@ For optional post-analysis software:
 pip install -r requirements.txt
 ```
 
-Or install manually:
-```bash
-pip install pyvisa numpy matplotlib scipy
-```
-
 ## Usage
 
 ### Data Acquisition with read_ds1202.py
@@ -34,18 +29,7 @@ Wrapper script for capturing oscilloscope data with automatic channel detection 
 ```bash
 # Capture data from all available channels
 python read_ds1202.py 192.168.1.100
-
-# Capture data from specific channel with custom filename prefix
-python read_ds1202.py 192.168.1.100 --channel 1 --prefix my_measurement
-
-# Try both channels with custom prefix
-python read_ds1202.py 192.168.1.100 --prefix experiment_1
 ```
-
-**Arguments:**
-- `ip_address` (required): IP address of the oscilloscope
-- `--channel`, `-c`: Specific channel to read (1 or 2). If not specified, tries both channels
-- `--prefix`, `-p`: Filename prefix for saved data (default: "ds1202_data")
 
 **Output:**
 - Saves data as `.npz` files with unique timestamps
