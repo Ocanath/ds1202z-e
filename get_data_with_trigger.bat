@@ -1,5 +1,8 @@
 @echo off
 
+python single_trigger.py 10.0.4.104
+TIMEOUT 1
+
 python read_ds1202.py 10.0.4.104 -o tmp.npz
 python label_channels.py tmp.npz -d
 
